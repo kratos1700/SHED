@@ -5,6 +5,7 @@
 import express, {Application} from 'express';
 import usuarioRutas from '../routes/usuario.routes';
 import horasRutas from '../routes/horas.routes';
+import dietasRutas from '../routes/dietas.routes';
 
 class Server {
 
@@ -13,7 +14,8 @@ class Server {
     private port:string;
     private apiPath ={
         usuarios : '/api/usuarios',
-        horas : '/api/horas'
+        horas : '/api/horas',
+        dietas : '/api/dietas'
 
     }
 
@@ -28,7 +30,8 @@ class Server {
 
     routes(){
         this.app.use(this.apiPath.usuarios,usuarioRutas),
-        this.app.use(this.apiPath.horas,horasRutas);
+        this.app.use(this.apiPath.horas,horasRutas),
+        this.app.use(this.apiPath.dietas,dietasRutas);
 
     }
 
