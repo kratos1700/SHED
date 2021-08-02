@@ -1,8 +1,6 @@
 
 import mongoose from 'mongoose';
 import config from "../settings/config";
-//require('dotenv').config();
-
 
 export const dbConnection = async ()=>{
     try {

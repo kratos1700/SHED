@@ -6,7 +6,7 @@ dotenv.config();
     app:{
         port: process.env.PORT || '8001'
     },
-    //variables de la base de datos
+    //variables de la base de datos Mongoo
     db:{
         Uri: process.env.MONGODB_CNN
     },

@@ -4,6 +4,8 @@
  
 
 import express, {Application} from 'express';
+import cors from 'cors';
+
 import usuarioRutas from '../routes/usuario.routes';
 import horasRutas from '../routes/horas.routes';
 import dietasRutas from '../routes/dietas.routes';
@@ -29,10 +31,17 @@ class Server {
     constructor(){
         this.app = express();
         this.port = config.app.port;
+        TODO: //mirar per que no funciona dins el middlewares
+        
+        // parseo y lectura de bodys. Es informacion recibida por un post
+        this.app.use(express.json());
         //define mis rutas
         this.routes();
         // conectar a MongoDB
         this.conectarDB();
+
+        //middlewares
+        this.middlewares();
 
 
 
@@ -40,6 +49,14 @@ class Server {
 
     async conectarDB(){
         await dbConnection();
+    }
+
+    middlewares(){
+       
+        //CORS evita problemas en las peticiones
+        this.app.use(cors());
+        // parseo y lectura de bodys. Es informacion recibida por un post
+        
     }
 
     routes(){
