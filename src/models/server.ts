@@ -1,11 +1,18 @@
 /**
  * CLASE SERVER
  */
+ 
 
 import express, {Application} from 'express';
 import usuarioRutas from '../routes/usuario.routes';
 import horasRutas from '../routes/horas.routes';
 import dietasRutas from '../routes/dietas.routes';
+
+import config from "../settings/config";
+import { dbConnection } from '../database/config';
+
+//import config from "../settings/config";
+
 
 class Server {
 
@@ -21,12 +28,19 @@ class Server {
 
     constructor(){
         this.app = express();
-        this.port = process.env.PORT ||'8000';
+        this.port = config.app.port;
         //define mis rutas
         this.routes();
+        // conectar a MongoDB
+        this.conectarDB();
+
+
 
     }
 
+    async conectarDB(){
+        await dbConnection();
+    }
 
     routes(){
         this.app.use(this.apiPath.usuarios,usuarioRutas),
