@@ -21,10 +21,12 @@ class Server {
     //  declaramos los atributos
     private app:Application;
     private port:string;
+    
     private apiPath ={
         usuarios : '/api/usuarios',
         horas : '/api/horas',
         dietas : '/api/dietas'
+       
 
     }
 
@@ -32,6 +34,7 @@ class Server {
         this.app = express();
         this.port = config.app.port;
         TODO: //mirar per que no funciona dins el middlewares
+         //mirar para mostrar usuarios eliminados
         
         // parseo y lectura de bodys. Es informacion recibida por un post
         this.app.use(express.json());
@@ -63,6 +66,7 @@ class Server {
         this.app.use(this.apiPath.usuarios,usuarioRutas),
         this.app.use(this.apiPath.horas,horasRutas),
         this.app.use(this.apiPath.dietas,dietasRutas);
+        
 
     }
 

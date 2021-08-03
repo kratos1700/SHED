@@ -1,9 +1,10 @@
+//import mongoose from 'mongoose';
 //modelo COLECCION Usuario
-
+var mongoose = require("mongoose");
 const {Schema, model}= require('mongoose');
 
 // creacion de la coleccion usuarios
-  const UsuarioSchema=  Schema({
+  const UsuarioSchema=  new Schema({
     nombre:{
         type: String,
         required:[true,'El nombre es obligatorio']
@@ -47,7 +48,7 @@ const {Schema, model}= require('mongoose');
     },
     dataActualizacion: { 
         type: Date, 
-        default: Date.now 
+        default: Date.now
     },
     resetPasswordToken:{
         type: String
@@ -75,6 +76,13 @@ UsuarioSchema.methods.toJSON = function() {
     return usuario;
 
 }
+
+
+
+
+
+
+
 
 // se exporta en singular y se le pasa el esquema para crear la coleccion
 module.exports=model('Usuario',UsuarioSchema)

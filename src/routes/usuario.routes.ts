@@ -3,7 +3,8 @@ import { getUsuario,
          getUsuarios,
          postUsuario, 
          putUsuario,
-         deleteUsuario} from '../controllers/usuarios.controller';
+         deleteUsuario,
+         } from '../controllers/usuarios.controller';
 
 const ruta = Router();
 
@@ -23,6 +24,7 @@ ruta.post('/', postUsuario);
 ruta.put('/:id',putUsuario);
 // eliminar usuario
 ruta.delete('/:id',deleteUsuario);
+
 
 
 
