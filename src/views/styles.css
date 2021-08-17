@@ -1,0 +1,58 @@
+.card{
+    margin: 3px;
+   
+    
+
+}
+
+
+.xs, .sm, .md, .lg,.xl{
+    height: 5vh;
+    line-height: 5vh;
+    text-align: center;
+    background-color: yellow;
+    border: 1px solid black;
+
+}
+
+@media screen and (max-width: 575px) {
+    .xs{
+        background-color: cyan;
+    }
+    .sm,.md,.lg,.xl{
+        display: none;
+    }  
+    .card{
+        width: 80%;
+        margin: 3px 10% 0px 10%;
+    }
+}
+
+@media screen and (max-width: 576px) and (max-width:767) {
+    .sm{
+        background-color: rgb(30, 139, 139);
+    }
+    .xs,.md,.lg,.xl{
+        display: none;
+    }  
+    .card{
+        width: 80%;
+        margin: 3px 10% 0px 10%;
+    }
+}
+    
+
+
+@media screen and (max-width: 768px) and (max-width:991px) {
+    .md{
+        background-color: rgb(30, 139, 139);
+    }
+    .xs,.sm,.lg,.xl{
+        display: none;
+    }  
+
+    .card{
+        width: 40%;
+        margin: 3px 0 0px 8%;
+    }
+}
