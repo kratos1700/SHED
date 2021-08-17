@@ -1,0 +1,1 @@
+# En esta carpeta se guardaran los archivos log de info y errores

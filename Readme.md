@@ -5,9 +5,10 @@
 - Express
 - Cors
 - Dotenv
-- Mongoose
+- Sequelize
 - Jsonwebtoken
 - Bcrypt
+- Sqlite
 
 ```JAVASCRIPT
 npm install
