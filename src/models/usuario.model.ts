@@ -1,6 +1,8 @@
 //interface usuario
 
 import * as Sequelize from "sequelize";
+import {Dieta} from "../models/dieta.model";
+import {Hora} from "../models/hora.model";
 
 
 import {sqlite} from "../database/sqlite";
@@ -108,6 +110,8 @@ export const Usuario = sqlite.define<UsuarioModel, NewUsuarioModel>('usuarios',{
 //configuramos que las tablas se pongan _ en mysql y tiempos de creacion y  updates ..
 }, {underscored:true, timestamps:true})
 
-
-
+Usuario.hasMany(Hora)
+Hora.belongsTo(Usuario)
+Usuario.hasMany(Dieta)
+Dieta.belongsTo(Usuario)
 

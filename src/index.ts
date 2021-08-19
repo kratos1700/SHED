@@ -14,6 +14,8 @@ import config from "./settings/config";
 //import { Articulo } from "./models/articulo.model";
 import Log from "./settings/logger.winston";
 import { sqlite } from "./database/sqlite";
+import { Dieta } from "./models/dieta.model";
+import { Hora } from "./models/hora.model";
 
 class App {
     private app: express.Application;
@@ -76,13 +78,17 @@ class App {
             .then(() => {
             Log.info('DDBB Conectada!!')
                 // fuerza crea tablas bbd, si existe la elimina .sync() crea la tabla, encaso de existir no hace nada ( video clase 7, 01:10:47)
-                Usuario.sync({ })  // Usuario.sync({ force: true })
+                Usuario.sync({ force: true }) // Usuario.sync({ force: true })
                     .then(() => console.log('Tabla usuarios creada correctamente!!'))
                     .catch((err: any) => console.log('No se ha podido crear la tabla!!! ERROR...' + err))
                 // crea la tabla articulos
-             //   Articulo.sync({ force: true })
-             //       .then(() => console.log('Tabla articulos creada correctamente!!'))
-             //       .catch((err: any) => console.log('No se ha podido crear la tabla articulos!!! ERROR...' + err))
+               Hora.sync({force: true })
+                   .then(() => console.log('Tabla horas creada correctamente!!'))
+                   .catch((err: any) => console.log('No se ha podido crear la tabla horas!!! ERROR...' + err))
+
+                   Dieta.sync({ force: true})
+                   .then(() => console.log('Tabla dietas creada correctamente!!'))
+                   .catch((err: any) => console.log('No se ha podido crear la tabla dieta!!! ERROR...' + err))
  //COMENTADO PARA QUE NO SE ESTE CREANDO LA BBDD CADA VEZ K INICIAMOS EL SERVER
 
                 //recuperamos el puerto establecido en el settings
