@@ -1,5 +1,5 @@
 import * as Sequelize from "sequelize";
-
+import { Usuario } from "../models/usuario.model";
 
 import {sqlite} from "../database/sqlite";
 
