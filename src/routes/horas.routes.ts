@@ -1,9 +1,10 @@
 import { Router } from 'express';
-import { getHoras, 
-         getHora,
-         postHora, 
-         putHora,
-         deleteHora} from '../controllers/horas.controller';
+import { getHora,      
+         
+         deleteHora,
+         findAll,
+         save,
+         update} from '../controllers/horas.controller';
          
 const ruta = Router();
 
@@ -14,13 +15,13 @@ const ruta = Router();
  * DEFINIMOS LAS RUTAS DEL BACKEND
  */
 //obtener horas
-ruta.get('/',getHoras);
+ruta.get('/',findAll);
 //obtener hora por id
 ruta.get('/:id',getHora);
 //crear horas
-ruta.post('/', postHora);
+ruta.post('/:id', save);
 // actualizar horas
-ruta.put('/:id',putHora);
+ruta.put('/:id',update);
 // eliminar horas
 ruta.delete('/:id',deleteHora);
 

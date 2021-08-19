@@ -7,7 +7,10 @@ import express, { NextFunction, Request, Response } from "express";
 import { Usuario } from "./models/usuario.model";
 import UsuarioRoutes from './routes/usuarios.routes'
 import LoginRouter from './routes/login.routes'
-import ArticuloRoutes from './routes/articulos.routes'
+import HorasRouuter from './routes/horas.routes'
+
+import DietasRouter from './routes/dietas.routes'
+
 import morgan from "morgan"
 
 import config from "./settings/config";
@@ -63,10 +66,10 @@ class App {
         this.app.use('/login', LoginRouter)
         this.app.use('/usuarios', UsuarioRoutes);
 
-        this.app.use('/articulos', ArticuloRoutes);
+        //this.app.use('/articulos', ArticuloRoutes);
 
-        this.app.use('/dietas', ArticuloRoutes);
-        this.app.use('/horas', ArticuloRoutes);
+        this.app.use('/dietas', DietasRouter);
+        this.app.use('/horas', HorasRouuter);
 
     }
 
@@ -78,15 +81,15 @@ class App {
             .then(() => {
             Log.info('DDBB Conectada!!')
                 // fuerza crea tablas bbd, si existe la elimina .sync() crea la tabla, encaso de existir no hace nada ( video clase 7, 01:10:47)
-                Usuario.sync({ force: true }) // Usuario.sync({ force: true })
+                Usuario.sync({ force: false }) // Usuario.sync({ force: true })
                     .then(() => console.log('Tabla usuarios creada correctamente!!'))
                     .catch((err: any) => console.log('No se ha podido crear la tabla!!! ERROR...' + err))
                 // crea la tabla articulos
-               Hora.sync({force: true })
+               Hora.sync({force: false })
                    .then(() => console.log('Tabla horas creada correctamente!!'))
                    .catch((err: any) => console.log('No se ha podido crear la tabla horas!!! ERROR...' + err))
 
-                   Dieta.sync({ force: true})
+                   Dieta.sync({ force: false})
                    .then(() => console.log('Tabla dietas creada correctamente!!'))
                    .catch((err: any) => console.log('No se ha podido crear la tabla dieta!!! ERROR...' + err))
  //COMENTADO PARA QUE NO SE ESTE CREANDO LA BBDD CADA VEZ K INICIAMOS EL SERVER

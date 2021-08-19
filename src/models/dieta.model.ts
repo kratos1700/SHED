@@ -1,5 +1,5 @@
 import * as Sequelize from "sequelize";
-import { Usuario } from "../models/usuario.model";
+
 
 import {sqlite} from "../database/sqlite";
 
@@ -12,7 +12,7 @@ export interface DietaModel extends Sequelize.Model {
     observaciones: string,
     pendent: boolean, // 
     cobrat: boolean, // 
-    idUser: number, //
+  //  idUser: number, //
     
 
 
@@ -33,7 +33,7 @@ export interface NewDietaModel {
     observaciones: string,
     pendent: boolean, // 
     cobrat: boolean, // 
-    idUser: number, //
+ //   idUser: number, //
 }
 
 
@@ -82,12 +82,12 @@ export const Dieta = sqlite.define<DietaModel, NewDietaModel>('dietas', {
         type: Sequelize.BOOLEAN,
         //no puede ser nulo
         allowNull: false
-    },
-    idUser: {
+    }
+    /* idUser: {
         type: Sequelize.NUMBER,
         //no puede ser nulo
         allowNull: false
-    }
+    } */
 
 
 }, { underscored: true, timestamps: true })

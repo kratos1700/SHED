@@ -60,6 +60,7 @@ export const Hora = sqlite.define<HoraModel, NewHoraModel>('hores', {
   
     dieta: {
         type: Sequelize.BOOLEAN,
+        defaultValue:false,
         //no puede ser nulo
         allowNull: false
     },
@@ -70,11 +71,13 @@ export const Hora = sqlite.define<HoraModel, NewHoraModel>('hores', {
     },
     pendent: {
         type: Sequelize.BOOLEAN,
+        defaultValue:false,
         //no puede ser nulo
         allowNull: false
     },
     cobrat: {
         type: Sequelize.BOOLEAN,
+        defaultValue:false,
         //no puede ser nulo
         allowNull: false
     },
@@ -82,7 +85,7 @@ export const Hora = sqlite.define<HoraModel, NewHoraModel>('hores', {
         type: Sequelize.NUMBER,
         //no puede ser nulo
         allowNull: false
-    }
+    } 
 
 
 }, { underscored: true, timestamps: true })
