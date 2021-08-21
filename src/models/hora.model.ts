@@ -1,5 +1,5 @@
 import * as Sequelize from "sequelize";
-import { Usuario } from "../models/usuario.model";
+//import { Usuario } from "../models/usuario.model";
 
 import {sqlite} from "../database/sqlite";
 
@@ -13,7 +13,7 @@ export interface HoraModel extends Sequelize.Model {
     observaciones: string,
     pendent: boolean, // 
     cobrat: boolean, // 
-    idUser: number, //
+    idUsuario: number, //
     
 
 
@@ -28,7 +28,7 @@ export interface NewHoraModel {
     observaciones: string,
     pendent: boolean, // 
     cobrat: boolean, // 
-    idUser: number, //
+    idUsuario: number, //
 }
 
 
@@ -81,8 +81,9 @@ export const Hora = sqlite.define<HoraModel, NewHoraModel>('hores', {
         //no puede ser nulo
         allowNull: false
     },
-    idUser: {
-        type: Sequelize.NUMBER,
+    idUsuario: {
+        type: Sequelize.INTEGER,
+       
         //no puede ser nulo
         allowNull: false
     } 

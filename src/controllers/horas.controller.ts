@@ -1,7 +1,10 @@
 import { Request, Response } from 'express';
 import { HorasService } from '../service/horas.service';
 
-import { HoraModel } from '../models/hora.model';
+//import { HoraModel } from '../models/hora.model';
+import config from '../settings/config';
+import { JwtPayload, VerifyErrors } from 'jsonwebtoken';
+import * as jwt from "jsonwebtoken";
 
 const horasService = new HorasService
 /**
@@ -9,15 +12,43 @@ const horasService = new HorasService
  * @param req 
  * @param res 
  */
-export const findAll = (__: Request, res: Response) => {
+export const findAll = (req: Request, res: Response) => {
 
-    horasService.findAll()
-    .then((horas:HoraModel[])=>{
-        return  res.json({
-            horas
-        })
-    }
-    )
+    
+  //recuperar token
+  let token: string | undefined = req.get('Authorization')
+  console.log(token);
+  if (token == undefined) {
+      return res.status(401).json({ msg: "No se ha encontrado ningún token" })
+  }
+  return jwt.verify(token, String(config.jwt.clave), (err: VerifyErrors | null, payload: JwtPayload | undefined) => {
+      if (err) {
+          console.log(err);
+          return res.status(401).json({ msg: "Token invalido" }) //<-- al ver un return salimos de la función
+      }
+      
+      //IS ADMIN
+      if (payload) {
+          return horasService.findAll((payload.id))!
+              .then(hores => {
+                  return res.json({
+                      hores
+                      
+                  })
+              })
+              .catch((err: Error) => {
+                  //lanzamos un error de servicio
+                  return res.status(500).json({
+                      msg: 'Error en la recuperacion de los datos ',
+                      error: err
+                  })
+              })
+      }
+      else
+
+          return res.status(401).json({ msg: "Token invalido" }) //<-- al ver un return salimos de la función
+
+  })
     
 }
 
@@ -42,22 +73,34 @@ export const getHora = (req: Request, res: Response) => {
  */
 export const save = (req: Request, res: Response) => {
 
-    const { id } = req.params;
+    const idUsuario = req.params.idUsuario
+
+
+   // const { id } = req.params;
     //al desestructurar datos se pueden poner alias poniendo : y el nombre que queramos
     const {  dia, hores,dieta,observaciones,pendent,cobrat
     } = req.body;
    
-    let idUser : number = parseInt  (id);
-    console.log(idUser, id);
+    
+    console.log(idUsuario);
+
    
     // comprobamos que los datos que pedimos esten rellenados 
-    if (dia === undefined || hores === undefined || dieta === undefined || observaciones === undefined
-        || pendent === undefined || cobrat === undefined ) {
-        return res.status(400).json({
-            msg: 'Revisa los datos enviados.' })  }
+    if (dia == undefined  || idUsuario == undefined || idUsuario == ''
+    ||  hores== undefined || hores=='' || 
+    observaciones==undefined || observaciones=='') {
+    
+        return res.status(500).json({
+        msg: 'Error en los datos a enviar '
+
+    })
+
+} 
+
+   
     //guardamos el articulo
-   return horasService.save( dia, hores,dieta,observaciones,pendent,cobrat,idUser)
-        .then((hora: HoraModel) => {
+   return horasService.save( dia, hores,dieta,observaciones,pendent,cobrat,Number (idUsuario))
+        .then(hora => {
             return res.json({ hora })
             
         })
@@ -82,20 +125,31 @@ export const save = (req: Request, res: Response) => {
  */
 export const update = (req: Request, res: Response) => {
 
-    
+    const idUsuario = req.params.idUsuario
+    const id = req.params.id
      //PARAMS BODY
     //tenemos que usar el params y el body
-    const id = req.params.id;
+   
     // desestructuramos el body
-    const { dia, hores,dieta,observaciones,pendent,cobrat} = req.body;
+    const {dia, hores,dieta,observaciones,pendent,cobrat} = req.body;
+
+     if (dia == undefined   ||  hores== undefined || hores=='' || 
+    observaciones==undefined || observaciones=='') { 
+    
+        return res.status(500).json({
+        msg: 'Error en los datos a enviar '
+
+    })
+}
+
     // actualizamos el usuario de la lista , convertimos el id a numero
-    horasService.update(Number(id),  dia, hores,dieta,observaciones,pendent,cobrat
+ return   horasService.update(Number(id),  dia, hores,dieta,observaciones,pendent,cobrat,Number(idUsuario),
     )
     //ojo con el casteo se pone any por que no se podia castear a UsuarioModel[]
         .then((actualizados: [number, any]) => {
             const [filas, _] = actualizados
             if (filas === 0) {
-                return res.status(404).json({ msg: `No se ha encontrado el articulo con el id ${id}` })
+                return res.status(404).json({ msg: `No se ha encontrado el registro con el id ${id}` })
             }
             return res.json({ msg: 'Datos actualizados correctamente' })
         })
@@ -114,12 +168,34 @@ export const update = (req: Request, res: Response) => {
  * @param req 
  * @param res 
  */
-export const deleteHora = (req: Request, res: Response) => {
+export const remove = (req: Request, res: Response) => {
 
-    const { id } = req.params;
+    const id =req.params.id;
 
-    res.json({
-        msg: 'deleteUsuario',
-        id
-    })
+     //de los parametros que nos llegan obtenemos el id
+     const idUsuario = req.params.idUsuario
+
+     console.log(id);
+     
+     horasService.delete(parseInt(id),Number(idUsuario))
+         .then((num: Number) => {
+             // si el num es igual a 0 mostramos mensaje de error
+             if (num === 0) {
+                 return res.status(404).json({
+                     msg: `El registro con el id: ${idUsuario} no se ha encontrado!!`
+                 })
+             }
+             // en caso de no error mostramos msg informando que se ha eliminado el usuario
+             return res.json({
+                 msg: `El registro  con id: ${id} del usuario con el id: ${idUsuario} ha sido eliminada!!`
+             })
+         })
+ 
+         .catch((err: Error) => {
+             //lanzamos un error de servicio
+             return res.status(500).json({
+                 msg: 'Error en la eliminacion de los datos ',
+                 error: err
+             })
+         })
 }
