@@ -1,9 +1,11 @@
 import { Router } from 'express';
-import { getHoras, 
-         getHora,
-         postHora, 
-         putHora,
-         deleteHora} from '../controllers/horas.controller';
+import { //getHora,      
+         
+         remove,
+         findAll,
+         save,
+         update} from '../controllers/horas.controller';
+import { checkUser } from '../middleware/jwt.middelware';
          
 const ruta = Router();
 
@@ -13,16 +15,27 @@ const ruta = Router();
 /**
  * DEFINIMOS LAS RUTAS DEL BACKEND
  */
+
+
+ruta.route('/horas')
 //obtener horas
-ruta.get('/',getHoras);
+//.get(findAll);
 //obtener hora por id
-ruta.get('/:id',getHora);
+//ruta.get('/:id',getHora);
 //crear horas
-ruta.post('/', postHora);
+
 // actualizar horas
-ruta.put('/:id',putHora);
+
 // eliminar horas
-ruta.delete('/:id',deleteHora);
+
+
+ruta.route('/:idUsuario')
+.get(checkUser,findAll)
+.post(checkUser,save)
+.put(checkUser,update)
+ruta.route('/:idUsuario/:id')
+.delete(checkUser,remove)
+.put(checkUser,update)
 
 
 

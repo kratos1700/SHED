@@ -110,8 +110,23 @@ export const Usuario = sqlite.define<UsuarioModel, NewUsuarioModel>('usuarios',{
 //configuramos que las tablas se pongan _ en mysql y tiempos de creacion y  updates ..
 }, {underscored:true, timestamps:true})
 
-Usuario.hasMany(Hora)
-Hora.belongsTo(Usuario)
-Usuario.hasMany(Dieta)
-Dieta.belongsTo(Usuario)
+Usuario.hasMany(Hora,{
+    onDelete:'CASCADE',
+    foreignKey:'idUsuario'
+})
+
+Hora.belongsTo(Usuario,{
+    
+    foreignKey:'idUsuario'
+})
+
+Usuario.hasMany(Dieta,{
+    onDelete:'CASCADE',
+    foreignKey:'idUsuario'
+})
+Dieta.belongsTo(Usuario,{
+    
+    foreignKey:'idUsuario'
+})
+
 

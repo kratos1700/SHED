@@ -1,5 +1,5 @@
 import * as Sequelize from "sequelize";
-import { Usuario } from "../models/usuario.model";
+
 
 import {sqlite} from "../database/sqlite";
 
@@ -12,7 +12,7 @@ export interface DietaModel extends Sequelize.Model {
     observaciones: string,
     pendent: boolean, // 
     cobrat: boolean, // 
-    idUser: number, //
+    idUsuario: number, //
     
 
 
@@ -33,7 +33,7 @@ export interface NewDietaModel {
     observaciones: string,
     pendent: boolean, // 
     cobrat: boolean, // 
-    idUser: number, //
+   idUsuario: number, //
 }
 
 
@@ -65,6 +65,7 @@ export const Dieta = sqlite.define<DietaModel, NewDietaModel>('dietas', {
    
     tipoDieta: {
         type: Sequelize.STRING,
+        defaultValue: EnumTiposDieta.MITJA,
         //no puede ser nulo
         allowNull: false
     },
@@ -83,11 +84,11 @@ export const Dieta = sqlite.define<DietaModel, NewDietaModel>('dietas', {
         //no puede ser nulo
         allowNull: false
     },
-    idUser: {
-        type: Sequelize.NUMBER,
+    idUsuario: {
+        type: Sequelize.INTEGER,
         //no puede ser nulo
         allowNull: false
-    }
+    } 
 
 
 }, { underscored: true, timestamps: true })
