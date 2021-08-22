@@ -16,13 +16,17 @@ import { TokenInterceptorService } from './interceptors/token.service';
 import { BaseUrlInterceptorService } from './interceptors/base-url-interceptor.service';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { RegistroComponent } from './component/registro/registro.component';
+import { PrincipalComponent } from './component/pages/principal/principal.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    LoginComponent
+    LoginComponent,
+    RegistroComponent,
+    PrincipalComponent
   ],
   imports: [
     BrowserModule,
