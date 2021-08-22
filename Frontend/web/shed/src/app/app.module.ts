@@ -18,6 +18,7 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { RegistroComponent } from './component/registro/registro.component';
 import { PrincipalComponent } from './component/pages/principal/principal.component';
+import { RegistreHoresComponent } from './component/pages/registre-hores/registre-hores.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { PrincipalComponent } from './component/pages/principal/principal.compon
     NavbarComponent,
     LoginComponent,
     RegistroComponent,
-    PrincipalComponent
+    PrincipalComponent,
+    RegistreHoresComponent
   ],
   imports: [
     BrowserModule,
