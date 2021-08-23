@@ -3,9 +3,9 @@
  * 
  */
 
-
+/* 
 import { Request, Response } from "express";
-import { ArticuloModel } from "../models/articulo.model";
+//import { ArticuloModel } from "../models/articulo.model";
 import { ArticulosService } from "../service/articulos.service";
 
 const articuloService = new ArticulosService();
@@ -133,3 +133,4 @@ export function remove(req: Request, res: Response) {
         });
 
 }
+ */
