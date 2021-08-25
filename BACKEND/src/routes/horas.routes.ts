@@ -17,7 +17,7 @@ const ruta = Router();
  */
 
 
-ruta.route('/horas')
+//ruta.route('/horas')
 //obtener horas
 //.get(findAll);
 //obtener hora por id
@@ -29,8 +29,12 @@ ruta.route('/horas')
 // eliminar horas
 
 
-ruta.route('/:idUsuario')
+/* ruta.route('/:idUsuario')
+.get(checkUser,findAll) */
+
+ruta.route('/')
 .get(checkUser,findAll)
+
 .post(checkUser,save)
 .put(checkUser,update)
 ruta.route('/:idUsuario/:id')
