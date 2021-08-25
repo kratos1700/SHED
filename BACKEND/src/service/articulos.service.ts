@@ -1,4 +1,4 @@
-import { Articulo, ArticuloModel } from "../models/articulo.model";
+/* import { Articulo, ArticuloModel } from "../models/articulo.model";
 
 export class ArticulosService {
 
@@ -32,4 +32,4 @@ export class ArticulosService {
     }, {where:{id}})
    
    }
-}
+} */

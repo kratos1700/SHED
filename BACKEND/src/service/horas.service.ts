@@ -6,6 +6,10 @@ export class HorasService {
         return Hora.findAll({where:{idUsuario}})
 
     }
+    findAllbyId(idUsuario:number): Promise<HoraModel[]> {
+        return Hora.findAll({where:{idUsuario}})
+
+    }
 
     findOneById(id: number): Promise<HoraModel | null> {
         return Hora.findByPk(id)

@@ -18,6 +18,7 @@ export class LoginService {
   private logged = false;
   private admin = false;
   private usuario: UsuarioToken | null = null
+ 
 
   constructor(private http: HttpClient, private toast: ToastService, private spinner: NgxSpinnerService) {
     const token = localStorage.getItem("token")
@@ -40,6 +41,10 @@ export class LoginService {
 
   getUsuario() {
     return this.usuario
+  }
+
+  getIdUsuario() {
+    return this.usuario!.id
   }
 
   isAdmin(){

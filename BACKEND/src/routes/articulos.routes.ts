@@ -1,7 +1,7 @@
 /**
  * ARCHIVO DONDE SE CREARAN LAS RUTAS PARA LOS ARTICULOS
  */
-
+/* 
  import { Router } from "express";
  import {  findAll, save, update, findOneById, remove } from "../controllers/articulos.controller";
 import { checkIsAdmin } from "../middleware/jwt.middelware";
@@ -17,4 +17,4 @@ import { checkIsAdmin } from "../middleware/jwt.middelware";
  .delete(remove)
  
  // EXPORTAMOS LAS RUTAS
- export default ruta;
+ export default ruta; */

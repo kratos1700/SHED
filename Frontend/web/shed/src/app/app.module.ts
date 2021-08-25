@@ -19,6 +19,11 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { RegistroComponent } from './component/registro/registro.component';
 import { PrincipalComponent } from './component/pages/principal/principal.component';
 import { RegistreHoresComponent } from './component/pages/registre-hores/registre-hores.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import {MatButtonModule} from "@angular/material/button";
+import { HoresComponent } from './component/pages/hores/hores.component';
+import { TaulaHoresComponent } from './component/pages/hores/taula-hores/taula-hores.component';
+import { FormHoresComponent } from './component/pages/hores/form-hores/form-hores.component';
 
 
 @NgModule({
@@ -28,7 +33,10 @@ import { RegistreHoresComponent } from './component/pages/registre-hores/registr
     LoginComponent,
     RegistroComponent,
     PrincipalComponent,
-    RegistreHoresComponent
+    RegistreHoresComponent,
+    HoresComponent,
+    TaulaHoresComponent,
+    FormHoresComponent
   ],
   imports: [
     BrowserModule,
@@ -38,9 +46,11 @@ import { RegistreHoresComponent } from './component/pages/registre-hores/registr
     HttpClientModule,
     NgxSpinnerModule,
     SweetAlert2Module.forRoot(),
-    BrowserAnimationsModule,
-   
-    FontAwesomeModule
+    BrowserAnimationsModule, 
+    FontAwesomeModule,
+    MatDialogModule,
+    MatButtonModule
+
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [

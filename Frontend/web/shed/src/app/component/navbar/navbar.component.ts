@@ -17,7 +17,7 @@ export class NavbarComponent implements OnInit {
       icon: 'P'
     },
     {
-      path: '/hores',
+      path: '/horas',
       nombre: "Hores",
       icon: 'H'
     },

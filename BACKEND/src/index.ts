@@ -9,6 +9,8 @@ import UsuarioRoutes from './routes/usuarios.routes'
 import LoginRouter from './routes/login.routes'
 import HorasRouuter from './routes/horas.routes'
 
+import cors from 'cors';
+
 import DietasRouter from './routes/dietas.routes'
 
 import morgan from "morgan"
@@ -42,7 +44,7 @@ class App {
     private middlewares() {
         // propiedades necesarias a las funciones middlewares
 
-        
+        this.app.use(cors());
         this.app.use(morgan('dev'));
         //lo usamos para que el backend pueda leer el body de la peticion
         //transforma un boy a JSON
@@ -54,6 +56,7 @@ class App {
          * CONFIGURACION PARA RECIBIR PETICIONES DEL FRONTEND
          */
         this.app.use((_:Request, res:Response, next:NextFunction)=>{
+            //res.header('Access-Control-Allow-Origin','https://localhost:4200')
             res.header('Access-Control-Allow-Origin','http://localhost:4200')
             res.header('Access-Control-Allow-Headers','Content-Type, Authorization')
             res.header('Access-Control-Allow-Methods','GET,POST,PUT,DELETE')

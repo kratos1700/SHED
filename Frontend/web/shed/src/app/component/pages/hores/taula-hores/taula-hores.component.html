@@ -1,0 +1,37 @@
+
+<table class="table table-hover">
+    <thead>
+
+        <tr>
+            <th>
+                #
+            </th>
+            <th>Dia</th>
+            <th>Hores</th>
+            <th>Dieta Generada</th>
+            <th>Observacions</th>
+            <th>Pendent</th>
+            <th>Cobrat</th>
+            <th></th>
+
+        </tr>
+    </thead>
+    <tbody>
+
+        <tr *ngFor="let hora of hores; let i = index " class="animate__animated  animate__fadeIn">
+            <td>{{i+1}}</td>
+            <td>{{hora.dia}}</td>
+            <td>{{hora.hores}}</td>
+            <td>{{hora.dieta}}</td>
+            <td>{{hora.observaciones}}</td>
+            <td>{{hora.pendent}}</td>
+            <td>{{hora.cobrat}}</td>
+            
+            
+            <td>
+                <a [routerLink]="['/',]">Modificar...</a>
+            </td>
+        </tr>
+    </tbody>
+
+</table>
