@@ -8,10 +8,10 @@
             </th>
             <th>Dia</th>
             <th>Hores</th>
-            <th>Dieta Generada</th>
+            <!-- <th>Dieta Generada</th> -->
             <th>Observacions</th>
-            <th>Pendent</th>
-            <th>Cobrat</th>
+           <!--  <th>Pendent</th>
+            <th>Cobrat</th> -->
             <th></th>
 
         </tr>
@@ -20,16 +20,44 @@
 
         <tr *ngFor="let hora of hores; let i = index " class="animate__animated  animate__fadeIn">
             <td>{{i+1}}</td>
-            <td>{{hora.dia}}</td>
+            <td>{{hora.dia | date:'shortDate' }}</td>
             <td>{{hora.hores}}</td>
-            <td>{{hora.dieta}}</td>
+            <!-- <td>{{hora.dieta}}</td> -->
             <td>{{hora.observaciones}}</td>
-            <td>{{hora.pendent}}</td>
-            <td>{{hora.cobrat}}</td>
+          <!--   <td>{{hora.pendent}}</td>
+            <td>{{hora.cobrat}}</td> -->
             
             
             <td>
-                <a [routerLink]="['/',]">Modificar...</a>
+                <div class="row ">
+                    <div class="col-2">
+                      <div class="d-grid">
+                        <button class="btn btn-outline-success" matTooltip="Editar" >
+                          <fa-icon [icon]="editar" ></fa-icon>
+                        </button>
+                      </div>
+                    </div>
+
+
+                    <div class="col-2">
+                        <div class="d-grid">
+                          <button class="btn btn-outline-warning" matTooltip="Editar" >
+                            <fa-icon [icon]="cobrat"></fa-icon>
+                          </button>
+                        </div>
+                      </div>
+                
+
+                <div class="col-2">
+                    <div class="d-grid">
+                      <button class="btn btn-outline-danger">
+                        <fa-icon [icon]="eliminar"></fa-icon>
+                      </button>
+                    </div>
+                  </div>
+
+                </div>
+                <!-- <a [routerLink]="['/',]">Modificar...</a> -->
             </td>
         </tr>
     </tbody>

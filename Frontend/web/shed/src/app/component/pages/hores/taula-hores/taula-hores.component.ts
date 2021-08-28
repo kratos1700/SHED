@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { HoraModel } from 'src/app/models/Horas.model';
+import {faEdit,faTrashAlt, faHandHoldingUsd} from '@fortawesome/free-solid-svg-icons'
+
 
 @Component({
   selector: 'app-taula-hores',
@@ -8,7 +10,9 @@ import { HoraModel } from 'src/app/models/Horas.model';
 })
 export class TaulaHoresComponent implements OnInit {
 
-  
+  editar = faEdit;
+  eliminar = faTrashAlt;
+  cobrat=faHandHoldingUsd
 
   @Input() 
   hores:HoraModel[]=[];
@@ -17,4 +21,5 @@ export class TaulaHoresComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  
 }

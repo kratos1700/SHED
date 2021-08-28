@@ -1,1 +1,121 @@
-<p>form-hores works!</p>
+<h2 mat-dialog-title>Formulari d'Hores Extres</h2>
+<mat-dialog-content class="mat-typography">
+<div class="row">
+  <div class="col-1">COL-1</div>
+  <div class="col-1">COL-2</div>
+  <div class="col-1">COL-3</div>
+  <div class="col-1">COL-4</div>
+  <div class="col-1">COL-5</div>
+  <div class="col-1">COL-6</div>
+  <div class="col-1">COL-7</div>
+  <div class="col-1">COL-8</div>
+  <div class="col-1">COL-9</div>
+  <div class="col-1">COL-10</div>
+  <div class="col-1">COL-11</div>
+  <div class="col-1">COL-12</div>
+</div>
+<form [formGroup]="formulario">
+  <div class="row g-3 align-items-center mb-3">
+    <div class="col-2 offset-2  col-md-1 offset-md-3">
+      <label for="input_nombre" class="col-form-label">Dia</label>
+    </div>
+    <div class="col-6 col-md-4">
+      <input type="text" id="input_nombre" class="form-control" aria-describedby="nombreHelpInline" [autofocus]="false"
+             formControlName="dia">
+    </div>
+  </div>
+
+
+
+
+
+
+
+  <div class="row g-3 align-items-center mb-3">
+    <div class="col-2 offset-2  col-md-1 offset-md-3">
+      <label for="input_stock" class="col-form-label">Hores Realitzades</label>
+    </div>
+    <div class="col-6 col-md-4">
+      <input type="number" id="input_stock" class="form-control" aria-describedby="stockHelpInline" [autofocus]="false"
+             formControlName="hores">
+     
+      
+    </div>
+  </div>
+
+
+
+
+
+  <div class="row g-3 align-items-center mb-3">
+    <div class="col-2 offset-2  col-md-1 offset-md-3">
+      <label for="input_consumible" class="col-form-label">Generes Dieta</label>
+    </div>
+    <div class="col-6 col-md-4">
+      <input type="checkbox" id="input_consumible" class="" aria-describedby="consumibleHelpInline" [autofocus]="false"
+             formControlName="dieta">
+     
+    </div>
+  </div>
+
+
+
+
+  <div class="row g-3 align-items-center mb-3">
+    <div class="col-2 offset-2  col-md-1 offset-md-3">
+      <label for="input_observaciones" class="col-form-label">Observacions</label>
+    </div>
+    <div class="col-6 col-md-4">
+      <input type="text" id="input_observaciones" class="form-control" aria-describedby="observacionesHelpInline" [autofocus]="false"
+             formControlName="observacions">
+    
+    </div>
+  </div>
+
+
+
+  <div class="row g-3 align-items-center mb-3">
+    <div class="col-2 offset-2  col-md-1 offset-md-3">
+      <label for="input_consumible" class="col-form-label">Pendent de Cobrar</label>
+    </div>
+    <div class="col-6 col-md-4">
+      <input type="checkbox" id="input_consumible" class="" aria-describedby="consumibleHelpInline" [autofocus]="false"
+             formControlName="pendent">
+     
+    </div>
+  </div>
+
+
+
+
+
+
+
+  <div class="row g-3 align-items-center mb-3">
+    <div class="col-2 offset-2  col-md-1 offset-md-3">
+      <label for="input_consumible" class="col-form-label">Hores Cobrades</label>
+    </div>
+    <div class="col-6 col-md-4">
+      <input type="checkbox" id="input_consumible" class="" aria-describedby="consumibleHelpInline" [autofocus]="false"
+             formControlName="cobrat">
+     
+    </div>
+  </div>
+
+
+
+
+
+    
+  
+</form>
+
+<!-- GRUPOS DE ELEMENTOS RELACIONADOS ENTRE ELLOS
+-DIRECCIONES
+-PASSWORDS
+-->
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button class="btn btn-outline-danger mx-2" mat-dialog-close>Cancelar</button>
+  <button class="btn btn-outline-success mx-2" cdkFocusInitial (click)="enviarFormulario()">Guardar</button>
+</mat-dialog-actions>

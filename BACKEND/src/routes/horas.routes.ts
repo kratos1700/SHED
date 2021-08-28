@@ -1,11 +1,12 @@
 import { Router } from 'express';
 import { //getHora,      
-         
+        //findAllCobrades, 
          remove,
-         findAll,
+        findAll,
          save,
          update} from '../controllers/horas.controller';
 import { checkUser } from '../middleware/jwt.middelware';
+
          
 const ruta = Router();
 
@@ -34,6 +35,8 @@ const ruta = Router();
 
 ruta.route('/')
 .get(checkUser,findAll)
+//.get(checkUser,findAllCobrades)
+
 
 .post(checkUser,save)
 .put(checkUser,update)

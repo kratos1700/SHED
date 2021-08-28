@@ -18,6 +18,7 @@ export class LoginService {
   private logged = false;
   private admin = false;
   private usuario: UsuarioToken | null = null
+  private idUsuario:number | null = null;
  
 
   constructor(private http: HttpClient, private toast: ToastService, private spinner: NgxSpinnerService) {
@@ -49,6 +50,9 @@ export class LoginService {
 
   isAdmin(){
    return this.admin;
+  }
+  getIdUser() {
+    return this.idUsuario;
   }
 
 
@@ -88,6 +92,7 @@ export class LoginService {
           role: decoded.role,
           exp: decoded.exp * 1000 /** MULTIPLICAMOS POR MIL PARA PONER LOS MILISEGUNDOS**/
         }
+        this.idUsuario= decoded.id;
         const hoy = new Date()
         /**
          * SI LUNES 16 es más grande que hoy NO cerramos sesión

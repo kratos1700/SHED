@@ -52,6 +52,88 @@ export const findAll = (req: Request, res: Response) => {
     
 }
 
+
+
+export const findAllCobrades = (req: Request, res: Response) => { 
+    //recuperar token
+    let token: string | undefined = req.get('Authorization')
+    console.log(token);
+    if (token == undefined) {
+        return res.status(401).json({ msg: "No se ha encontrado ningún token" })
+    }
+    return jwt.verify(token, String(config.jwt.clave), (err: VerifyErrors | null, payload: JwtPayload | undefined) => {
+        if (err) {
+            console.log(err);
+            return res.status(401).json({ msg: "Token invalido" }) //<-- al ver un return salimos de la función
+        }
+        
+        //IS ADMIN
+        if (payload) {
+            return horasService.findAllCobrades((payload.id))!
+                .then(hores => {
+                    return res.json({
+                        hores
+                        
+                    })
+                })
+                .catch((err: Error) => {
+                    //lanzamos un error de servicio
+                    return res.status(500).json({
+                        msg: 'Error en la recuperacion de los datos ',
+                        error: err
+                    })
+                })
+        }
+        else
+  
+            return res.status(401).json({ msg: "Token invalido" }) //<-- al ver un return salimos de la función
+  
+    })
+      
+  }
+
+
+
+export const findAllNoCobrades = (req: Request, res: Response) => { 
+    //recuperar token
+    let token: string | undefined = req.get('Authorization')
+    console.log(token);
+    if (token == undefined) {
+        return res.status(401).json({ msg: "No se ha encontrado ningún token" })
+    }
+    return jwt.verify(token, String(config.jwt.clave), (err: VerifyErrors | null, payload: JwtPayload | undefined) => {
+        if (err) {
+            console.log(err);
+            return res.status(401).json({ msg: "Token invalido" }) //<-- al ver un return salimos de la función
+        }
+        
+        //IS ADMIN
+        if (payload) {
+            return horasService.findAllNoCobrades((payload.id))!
+                .then(hores => {
+                    return res.json({
+                        hores
+                        
+                    })
+                })
+                .catch((err: Error) => {
+                    //lanzamos un error de servicio
+                    return res.status(500).json({
+                        msg: 'Error en la recuperacion de los datos ',
+                        error: err
+                    })
+                })
+        }
+        else
+  
+            return res.status(401).json({ msg: "Token invalido" }) //<-- al ver un return salimos de la función
+  
+    })
+      
+  }
+
+
+
 /**
  * 
  * @param req FUNCION OBTENER USUARIO POR ID
@@ -73,12 +155,12 @@ export const getHora = (req: Request, res: Response) => {
  */
 export const save = (req: Request, res: Response) => {
 
-    const idUsuario = req.params.idUsuario
+    //const idUsuario = req.params.idUsuario
 
 
    // const { id } = req.params;
     //al desestructurar datos se pueden poner alias poniendo : y el nombre que queramos
-    const {  dia, hores,dieta,observaciones,pendent,cobrat
+    const {  dia, hores,dieta,observaciones,pendent,cobrat,idUsuario
     } = req.body;
    
     
@@ -86,7 +168,7 @@ export const save = (req: Request, res: Response) => {
 
    
     // comprobamos que los datos que pedimos esten rellenados 
-    if (dia == undefined  || idUsuario == undefined || idUsuario == ''
+ /*    if (dia == undefined  || idUsuario == undefined || idUsuario == ''
     ||  hores== undefined || hores=='' || 
     observaciones==undefined || observaciones=='') {
     
@@ -95,13 +177,16 @@ export const save = (req: Request, res: Response) => {
 
     })
 
-} 
+}  */
 
    
     //guardamos el articulo
    return horasService.save( dia, hores,dieta,observaciones,pendent,cobrat,Number (idUsuario))
         .then(hora => {
-            return res.json({ hora })
+            return res.status(200).json({ 
+                msg: 'Datos guardados correctamente',
+                hora
+             })
             
         })
         
