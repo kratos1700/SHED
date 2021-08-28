@@ -44,11 +44,11 @@ export class FormHoresComponent implements OnInit {
     this.formulario = this.formBuilder.group({
       id: new FormControl(null), //NOS PONDRÁ EL ID Y SI NO EXISTE PONDRÁ NULL
       dia: new FormControl(null, [Validators.required]),
-      hores: new FormControl(null, [Validators.required]),
-      dieta: new FormControl   (null),          //(this.horaExtra.dieta ? this.horaExtra.dieta : false, []),
-      observacions: new FormControl(null, [Validators.required]),
-      pendent: new FormControl (null),    //( this.horaExtra.pendent ? this.horaExtra.pendent : true, []),
-      cobrat: new FormControl   (null),   //( this.horaExtra.cobrat ? this.horaExtra.cobrat : false, []), //
+      hores: new FormControl(null, [Validators.required ,Validators.min(0), Validators.pattern("^[0-9]+$")]),
+      dieta: new FormControl   (false),          //(this.horaExtra.dieta ? this.horaExtra.dieta : false, []),
+      observaciones: new FormControl(null, [Validators.required]),
+      pendent: new FormControl (true),    //( this.horaExtra.pendent ? this.horaExtra.pendent : true, []),
+      cobrat: new FormControl   (false),   //( this.horaExtra.cobrat ? this.horaExtra.cobrat : false, []), //
       //idUsuario: this.idUsuario,
       
     });

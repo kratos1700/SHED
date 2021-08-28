@@ -17,11 +17,37 @@
 <form [formGroup]="formulario">
   <div class="row g-3 align-items-center mb-3">
     <div class="col-2 offset-2  col-md-1 offset-md-3">
-      <label for="input_nombre" class="col-form-label">Dia</label>
+      <label for="input_hores" class="col-form-label">Dia</label>
+    
     </div>
     <div class="col-6 col-md-4">
-      <input type="text" id="input_nombre" class="form-control" aria-describedby="nombreHelpInline" [autofocus]="false"
-             formControlName="dia">
+      <mat-form-field appearance="fill">
+      
+        <input matInput [matDatepicker]="picker" class="form-control" formControlName="dia">
+        <mat-datepicker-toggle matSuffix [for]="picker" >
+        
+      </mat-datepicker-toggle>
+        <mat-datepicker #picker ></mat-datepicker>
+      </mat-form-field>
+
+      
+      <div *ngIf="formUtils.get('dia').errors && (formUtils.get('dia').touched || formUtils.get('dia').dirty)" class="invalid">
+        <!--{{JSON.stringify(formUtils.get('observaciones').errors)}}-->
+        <!-- El interrogante determina si algo es o no es nullo, en caso de ser nullo lo ignora en caso de no serlo continua-->
+        <div *ngIf="formUtils.get('dia').errors?.required">
+          El camp  Dia es requerit
+        </div>
+        <!--<div *ngIf="formulario.get('observaciones')?.errors?.minlength">
+          La longitud debe de ser de {{formulario.get('observaciones')?.errors?.minlength.requiredLength}} caracteres.
+          {{formulario.get('observaciones')?.errors?.minlength.requiredLength - formulario.get('observaciones')?.errors?.minlength.actualLength}} restantes
+        </div>-->
+        <div *ngIf="formUtils.get('dia').errors?.pattern">
+          El dia no compleixe amb les caracteristiques
+        </div>
+      </div>
+   
+
+      
     </div>
   </div>
 
@@ -33,11 +59,27 @@
 
   <div class="row g-3 align-items-center mb-3">
     <div class="col-2 offset-2  col-md-1 offset-md-3">
-      <label for="input_stock" class="col-form-label">Hores Realitzades</label>
+      <label for="input_hores" class="col-form-label">Hores Realitzades</label>
     </div>
     <div class="col-6 col-md-4">
       <input type="number" id="input_stock" class="form-control" aria-describedby="stockHelpInline" [autofocus]="false"
              formControlName="hores">
+
+
+             <div *ngIf="formUtils.get('hores').errors && (formUtils.get('hores').touched || formUtils.get('hores').dirty)" class="invalid">
+              <!--{{JSON.stringify(formUtils.get('observaciones').errors)}}-->
+              <!-- El interrogante determina si algo es o no es nullo, en caso de ser nullo lo ignora en caso de no serlo continua-->
+              <div *ngIf="formUtils.get('hores').errors?.required">
+                El camp  Hores exres es requerit
+              </div>
+              <!--<div *ngIf="formulario.get('observaciones')?.errors?.minlength">
+                La longitud debe de ser de {{formulario.get('observaciones')?.errors?.minlength.requiredLength}} caracteres.
+                {{formulario.get('observaciones')?.errors?.minlength.requiredLength - formulario.get('observaciones')?.errors?.minlength.actualLength}} restantes
+              </div>-->
+              <div *ngIf="formUtils.get('hores').errors?.pattern">
+                Les hores extres no compleixen amb les caracteristiques
+              </div>
+            </div>
      
       
     </div>
@@ -67,7 +109,22 @@
     </div>
     <div class="col-6 col-md-4">
       <input type="text" id="input_observaciones" class="form-control" aria-describedby="observacionesHelpInline" [autofocus]="false"
-             formControlName="observacions">
+             formControlName="observaciones">
+
+             <div *ngIf="formUtils.get('observaciones').errors && (formUtils.get('observaciones').touched || formUtils.get('observaciones').dirty)" class="invalid">
+              <!--{{JSON.stringify(formUtils.get('observaciones').errors)}}-->
+              <!-- El interrogante determina si algo es o no es nullo, en caso de ser nullo lo ignora en caso de no serlo continua-->
+              <div *ngIf="formUtils.get('observaciones').errors?.required">
+                El camp Observacions es requerit
+              </div>
+              <!--<div *ngIf="formulario.get('observaciones')?.errors?.minlength">
+                La longitud debe de ser de {{formulario.get('observaciones')?.errors?.minlength.requiredLength}} caracteres.
+                {{formulario.get('observaciones')?.errors?.minlength.requiredLength - formulario.get('observaciones')?.errors?.minlength.actualLength}} restantes
+              </div>-->
+              <div *ngIf="formUtils.get('observaciones').errors?.pattern">
+                Les observacions no compleixen amb les caracteristiques
+              </div>
+            </div>
     
     </div>
   </div>
