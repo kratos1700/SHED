@@ -26,8 +26,8 @@ export interface NewHoraModel {
     hores: number,
     dieta: boolean,
     observaciones: string,
-    pendent: boolean, // 
-    cobrat: boolean, // 
+    pendent?: boolean, // 
+    cobrat?: boolean, // 
     idUsuario: number, //
 }
 
@@ -73,13 +73,13 @@ export const Hora = sqlite.define<HoraModel, NewHoraModel>('hores', {
         type: Sequelize.BOOLEAN,
         defaultValue:false,
         //no puede ser nulo
-        allowNull: false
+        allowNull: true
     },
     cobrat: {
         type: Sequelize.BOOLEAN,
         defaultValue:false,
         //no puede ser nulo
-        allowNull: false
+        allowNull: true
     },
     idUsuario: {
         type: Sequelize.INTEGER,

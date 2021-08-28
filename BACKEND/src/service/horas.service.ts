@@ -6,6 +6,28 @@ export class HorasService {
         return Hora.findAll({where:{idUsuario}})
 
     }
+
+    findAllCobrades(idUsuario:number): Promise<HoraModel[]> {
+        return Hora.findAll({
+            where:{
+                idUsuario,
+                pendent:true
+            }
+        })
+    
+    
+    }
+
+
+    findAllNoCobrades(idUsuario:number): Promise<HoraModel[]> {
+        return Hora.findAll({
+            where:{
+                idUsuario,
+                pendent:false
+            }
+        })
+
+    }
     findAllbyId(idUsuario:number): Promise<HoraModel[]> {
         return Hora.findAll({where:{idUsuario}})
 
@@ -20,6 +42,7 @@ export class HorasService {
         return Hora.destroy({where:{idUsuario,id}});
     }
 
+    
 
 
     save(dia:Date, hores: number,dieta: boolean, 

@@ -5,8 +5,9 @@ export interface HoraModel {
     hores: number,
     dieta: boolean,
     observaciones: string,
-    pendent: boolean, // 
-    cobrat: boolean
+    pendent?: boolean, // 
+    cobrat?: boolean, 
+    idUsuario?: number
 
   }
   

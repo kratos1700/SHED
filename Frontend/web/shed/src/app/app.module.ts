@@ -24,7 +24,8 @@ import {MatButtonModule} from "@angular/material/button";
 import { HoresComponent } from './component/pages/hores/hores.component';
 import { TaulaHoresComponent } from './component/pages/hores/taula-hores/taula-hores.component';
 import { FormHoresComponent } from './component/pages/hores/form-hores/form-hores.component';
-
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,9 @@ import { FormHoresComponent } from './component/pages/hores/form-hores/form-hore
     BrowserAnimationsModule, 
     FontAwesomeModule,
     MatDialogModule,
-    MatButtonModule
+    MatButtonModule,
+    MatDatepickerModule,
+    MatNativeDateModule
 
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

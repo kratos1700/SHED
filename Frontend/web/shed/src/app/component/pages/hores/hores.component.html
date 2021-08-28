@@ -1,13 +1,26 @@
-
-
-
-
 <!--SI HAY MAS DE 0 PAISES MOSTRAMOS LA TABLA-->
 <!-- <div *ngIf="hores.length > 0"> -->
-    <div>
-    <div class="col">
 
-        <app-taula-hores [hores]="hores"></app-taula-hores>
-        
+    <div class="row mb-2" >
+        <div class="d-grid d-md-flex justify-content-md-end">
+          <button class="btn btn-outline-primary" type="button"   (click)="openDialog()">Noves hores Extra</button>
+         </div>
+      </div>
+
+
+    <div>
+        <div class="col">
+            <h1 id="titol1" class="text-center">HORES PENDENTS DE COBRAR</h1>
+            
+            <app-taula-hores [hores]="hores"></app-taula-hores>
+        </div>
+
+
+
+        <div class="col">
+            <h1 id="titol2" class="text-center">HORES COBRADES</h1>
+            
+            <app-taula-hores [hores]="hores"></app-taula-hores>
+        </div>
     </div>
-</div>
+<!-- </div> -->

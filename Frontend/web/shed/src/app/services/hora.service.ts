@@ -5,6 +5,8 @@ import { BehaviorSubject } from 'rxjs';
 import { first, map } from 'rxjs/operators';
 import { HoraModel, HorasModelResponse, HoraModelResponse } from '../models/Horas.model';
 import { ToastService } from './toast.service';
+import {MatDialogRef} from "@angular/material/dialog";
+import { FormHoresComponent } from '../component/pages/hores/form-hores/form-hores.component';
 
 @Injectable({
   providedIn: 'root'
@@ -54,16 +56,22 @@ private checkLast() {
 
 
 
-//PETICIONES PARA ADMINS!!
-save(hora: HoraModel) {
+//PETICIONES PARA todos!!
+save(hora: HoraModel ,ref: MatDialogRef<FormHoresComponent>) {
+  
+  
   this.http.post<HoraModelResponse>('horas', hora) //peticion post sirve para crear algo //articulos--> http://localhost:3000/articulos
     .pipe(first())
     .subscribe((data) => {
       this.toast.success(data.msg)
       this.horas.value.push(data.hora)
       this.horas.next(this.horas.value)
+      ref.close()
     })
 }
 
+update(hora: HoraModel,ref: MatDialogRef<FormHoresComponent>){
+
+}
 
 }
