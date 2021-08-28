@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { BehaviorSubject } from 'rxjs';
 import { first, map } from 'rxjs/operators';
-import { HoraModel, HorasModelResponse, HoraModelResponse } from '../models/Horas.model';
+import { HoraModel, HorasModelResponse, HoraModelResponse, DeleteHoraResponse } from '../models/Horas.model';
 import { ToastService } from './toast.service';
 import {MatDialogRef} from "@angular/material/dialog";
 import { FormHoresComponent } from '../component/pages/hores/form-hores/form-hores.component';
@@ -72,6 +72,22 @@ save(hora: HoraModel ,ref: MatDialogRef<FormHoresComponent>) {
 
 update(hora: HoraModel,ref: MatDialogRef<FormHoresComponent>){
 
+}
+
+
+
+
+delete(id:number){
+  this.http.delete<DeleteHoraResponse>(`horas/${id}`)
+    .pipe(first())
+    .subscribe((data: DeleteHoraResponse) => {
+      this.toast.success(data.msg)
+
+
+      const horasfiltradas = this.horas.value.filter(horas=>horas.id!==id) //ELIMINADO horas DE LA LISTA
+      console.log(horasfiltradas);
+      this.horas.next(horasfiltradas) //PARTE MÁS IMPORTANTE
+    })
 }
 
 }

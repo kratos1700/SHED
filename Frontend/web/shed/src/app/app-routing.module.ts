@@ -16,7 +16,7 @@ const routes: Routes = [
 {path:'registro',component:RegistroComponent},
 {path:'login',component:LoginComponent},
 {path:'horas',component:HoresComponent},
-{path:'horasn',component:FormHoresComponent}
+{path:'horas/formulario',component:FormHoresComponent}
 
 ];
 

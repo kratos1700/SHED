@@ -27,6 +27,8 @@ export const findAll = (req: Request, res: Response) => {
           return res.status(401).json({ msg: "Token invalido" }) //<-- al ver un return salimos de la función
       }
       
+      console.log(`este es el pay load ${payload!.id}`);
+      
       //IS ADMIN
       if (payload) {
           return horasService.findAll((payload.id))!
@@ -262,7 +264,7 @@ export const remove = (req: Request, res: Response) => {
 
      console.log(id);
      
-     horasService.delete(parseInt(id),Number(idUsuario))
+     horasService.delete(parseInt(id))
          .then((num: Number) => {
              // si el num es igual a 0 mostramos mensaje de error
              if (num === 0) {

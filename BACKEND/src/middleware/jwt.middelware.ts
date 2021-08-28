@@ -60,7 +60,7 @@ export function checkUser(req: Request, res: Response, next: NextFunction) {
         }
         //IS ADMIN
         if (payload) { //CHECK de payload !== undefined
-            if (payload.role === EnumUsuarioRol.ADMIN) {
+            if (payload.role === EnumUsuarioRol.ADMIN ) {  //|| payload.role === EnumUsuarioRol.USER
                 req.body.idUsuario = payload.id
                 return next()
             }
@@ -72,11 +72,8 @@ export function checkUser(req: Request, res: Response, next: NextFunction) {
         } else {
             return res.status(401).json({msg: 'Token invalido'})
         }
-
-    
-
-
     })
+
 }
 
 

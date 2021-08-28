@@ -38,10 +38,13 @@ export class HorasService {
     }
 
     //funcion para eliminar  por id
-    delete(id:number,idUsuario:number):Promise<Number>{
+    /* delete(id:number,idUsuario:number):Promise<Number>{
         return Hora.destroy({where:{idUsuario,id}});
-    }
+    } */
 
+    delete(id:number):Promise<Number>{
+        return Hora.destroy({where:{id}});
+    }
     
 
 

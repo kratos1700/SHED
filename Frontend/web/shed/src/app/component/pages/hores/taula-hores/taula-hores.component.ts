@@ -16,6 +16,11 @@ export class TaulaHoresComponent implements OnInit {
 
   @Input() 
   hores:HoraModel[]=[];
+
+  @Input() 
+  horesCobrades:HoraModel[]=[];
+
+
   constructor() { }
 
   ngOnInit(): void {

@@ -63,19 +63,6 @@ export class FormHoresComponent implements OnInit {
       idUsuario: this.idUsuario,
     }); 
     
-     id?: number,
-    dia:Date,
-    hores: number,
-    dieta: boolean,
-    observaciones: string,
-    pendent?: boolean, // 
-    cobrat?: boolean, 
-    idUsuario?: number
-
-    
-    
-    
-    
     */
     this.formUtils.formulario = this.formulario;
   }

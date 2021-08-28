@@ -40,9 +40,10 @@ ruta.route('/')
 
 .post(checkUser,save)
 .put(checkUser,update)
-ruta.route('/:idUsuario/:id')
+//ruta.route('/:idUsuario/:id')
+ruta.route('/:id')
 .delete(checkUser,remove)
-.put(checkUser,update)
+
 
 
 

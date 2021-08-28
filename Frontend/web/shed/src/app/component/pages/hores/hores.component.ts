@@ -53,7 +53,7 @@ openDialog(horasExtra?: HoraModel) {
       horasExtra: horasExtra
     },
     width: '80%',
-    height: '80%'
+    height: '60%'
   });
 
   dialogRef.afterClosed().subscribe(result => {
